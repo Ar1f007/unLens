@@ -55,7 +55,7 @@ export const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/" className="btn btn-">
+        <Link to="/login" className="btn btn-">
           Login
         </Link>
       </div>
