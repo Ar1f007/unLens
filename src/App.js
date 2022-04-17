@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Footer, Login, Navbar } from './components';
+import { Footer, Login, Navbar, Register } from './components';
 import { Home } from './pages';
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
           <Route path="/blogs" element={<div>Home</div>} />
           <Route path="/about" element={<div>Home</div>} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </main>
 
