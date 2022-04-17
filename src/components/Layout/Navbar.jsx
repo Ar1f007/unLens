@@ -3,7 +3,6 @@ import { useId } from 'react';
 
 const navigation = [
   { name: 'Home', path: '/' },
-  { name: 'Services', path: '/services' },
   { name: 'Blogs', path: '/blogs' },
   { name: 'About', path: '/about' },
 ];
@@ -12,7 +11,7 @@ export const Navbar = () => {
   const id = useId();
 
   return (
-    <nav className="container mx-auto navbar bg-base-100">
+    <nav className="container mx-auto navbar bg-base-100 fixed top-0 left-0 right-0 z-10">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
