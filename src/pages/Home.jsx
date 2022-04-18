@@ -3,7 +3,7 @@ import { Testimonial } from '../components/Testimonial';
 
 export const Home = () => {
   return (
-    <section className="my-5">
+    <section className="py-5">
       <Hero />
       <Services />
       <Testimonial />

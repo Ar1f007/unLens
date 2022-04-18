@@ -2,6 +2,7 @@ import { portrait, product, corporate, event, wedding } from '../';
 
 export const serviceList = [
   {
+    id: 1,
     category: 'Portrait',
     img: portrait,
     services: ['60 minute session', '20 digital images', 'Up to 4 outfit changes', 'Photo Editing'],
@@ -9,6 +10,7 @@ export const serviceList = [
   },
 
   {
+    id: 2,
     category: 'Corporate',
     img: corporate,
     services: ['2.5 hours of coverage', '60+ digital images', 'Facebook cover', 'image release'],
@@ -16,6 +18,7 @@ export const serviceList = [
   },
 
   {
+    id: 3,
     category: 'Wedding',
     img: wedding,
     services: [
@@ -27,6 +30,7 @@ export const serviceList = [
     price: 1000,
   },
   {
+    id: 4,
     category: 'Product',
     img: product,
     services: [
@@ -38,6 +42,7 @@ export const serviceList = [
     price: 500,
   },
   {
+    id: 5,
     category: 'Random Events',
     img: event,
     services: ['2 hours of coverage', '40+ digital images', '1-4 person', 'Up to 3 outfit change'],

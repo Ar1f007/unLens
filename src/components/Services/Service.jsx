@@ -1,7 +1,8 @@
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { useId } from 'react';
+import { Link } from 'react-router-dom';
 
-export const Service = ({ service: { category, img, services, price } }) => {
+export const Service = ({ service: { category, img, services, price, id: serviceId } }) => {
   const id = useId();
   return (
     <div className="card bg-base-100 shadow-2xl lg:w-96">
@@ -25,7 +26,12 @@ export const Service = ({ service: { category, img, services, price } }) => {
         </button>
 
         <div className="card-actions">
-          <button className="btn btn-primary btn-wide tracking-wide mt-5">Get it</button>
+          <Link
+            to={`/checkout/${serviceId}`}
+            className="btn btn-primary btn-wide tracking-wide mt-5"
+          >
+            Book
+          </Link>
         </div>
       </div>
     </div>

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Login, Navbar, Register } from './components';
-import { Home, NotFound } from './pages';
+import { Checkout, Home, NotFound } from './pages';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { RequireAuth } from './components/RequireAuth';
 
 function App() {
   return (
@@ -19,6 +20,14 @@ function App() {
           <Route path="/about" element={<div>Home</div>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route
+            path="/checkout/:id"
+            element={
+              <RequireAuth>
+                <Checkout />
+              </RequireAuth>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ToastContainer />

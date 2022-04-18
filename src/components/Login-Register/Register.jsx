@@ -33,7 +33,7 @@ export const Register = () => {
   useEffect(() => {
     if (user || githubSignupUser) {
       toast('Registration successful');
-      navigate(from);
+      navigate(from, { replace: true });
     }
   }, [user, githubSignupUser]); // eslint-disable-line
 
