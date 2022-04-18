@@ -5,4 +5,5 @@ export { Services } from './Services/Services';
 export { Service } from './Services/Service';
 export { Login } from './Login-Register/Login';
 export { Register } from './Login-Register/Register';
-// export {} from './';
+export { RequireAuth } from './Login-Register/RequireAuth';
+export { ForgotPassword } from './Login-Register/ForgotPassword';

@@ -1,10 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Footer, Login, Navbar, Register } from './components';
+import { Footer, Login, Navbar, ForgotPassword, Register, RequireAuth } from './components';
 import { Checkout, Home, NotFound } from './pages';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { RequireAuth } from './components/RequireAuth';
 
 function App() {
   return (
@@ -28,6 +27,7 @@ function App() {
               </RequireAuth>
             }
           />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ToastContainer />

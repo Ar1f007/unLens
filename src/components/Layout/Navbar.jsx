@@ -45,9 +45,9 @@ export const Navbar = () => {
             ))}
           </ul>
         </div>
-        <button to="/" className="btn btn-ghost normal-case text-xl">
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
           unLens
-        </button>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
