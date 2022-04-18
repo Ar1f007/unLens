@@ -7,7 +7,7 @@ import { signOut } from 'firebase/auth';
 const navigation = [
   { name: 'Home', path: '/' },
   { name: 'Blogs', path: '/blogs' },
-  { name: 'About', path: '/about' },
+  { name: 'About Me', path: '/about-me' },
 ];
 
 export const Navbar = () => {
