@@ -6,7 +6,7 @@ export const Services = () => {
   const id = useId();
 
   return (
-    <div className="bg-zinc-300 py-20 md:py-24 px-10">
+    <div className="bg-zinc-300 py-20 md:py-24 px-10" id="services">
       <div id="services" className="container mx-auto">
         <h2 className="text-primary-content font-medium uppercase text-4xl text-center tracking-widest ">
           Services

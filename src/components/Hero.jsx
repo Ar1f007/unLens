@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 export const Hero = () => {
   return (
     <div
@@ -14,9 +12,10 @@ export const Hero = () => {
             Behind every picture… there is a story …to tell! <br /> Life is beautiful, let me
             capture yours.
           </p>
-          <Link to="/login" className="btn btn-primary">
+
+          <a href="#services" className="btn btn-primary">
             Frame your shot
-          </Link>
+          </a>
         </div>
       </div>
     </div>

@@ -22,8 +22,8 @@ export const AboutMe = () => {
           </p>
           <p className="py-3">
             In order to achieve that I want to keep focusing on gradual improvement, stay
-            determined, take one step at a time. In doing so, one day Inshaallah I shall achieve my
-            goal.
+            determined, take one step at a time. And in doing so, one day Inshaallah I shall achieve
+            my goal.
           </p>
         </div>
       </div>

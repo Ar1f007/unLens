@@ -2,7 +2,7 @@ export const Blog = () => {
   return (
     <section className="p-4 lg:p-16 max-w-7xl mx-auto bg-neutral-content mt-24 rounded">
       <div
-        tabindex="0"
+        tabIndex="0"
         className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box"
       >
         <div className="collapse-title lg:text-xl font-medium">
@@ -26,7 +26,7 @@ export const Blog = () => {
         </div>
       </div>
       <div
-        tabindex="0"
+        tabIndex="0"
         className="mt-10 collapse collapse-arrow border border-base-300 bg-base-100 rounded-box"
       >
         <div className="collapse-title lg:text-xl font-medium">
@@ -49,7 +49,7 @@ export const Blog = () => {
         </div>
       </div>
       <div
-        tabindex="0"
+        tabIndex="0"
         className="mt-10 collapse collapse-arrow border border-base-300 bg-base-100 rounded-box"
       >
         <div className="collapse-title lg:text-xl font-medium">
