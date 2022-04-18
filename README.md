@@ -3,7 +3,7 @@
 It is a simple single page react application mainly focusing on routing and authentication.
 I built this on firebase authentication practice purpose.
 
-This project focuses on photography as a service.
+This project is about photography as a service.
 
 ## Features / what is included in this project
 
