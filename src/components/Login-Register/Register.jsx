@@ -9,8 +9,6 @@ export const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showError, setShowError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
   const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(
     auth,
     { sendEmailVerification: true }
@@ -18,31 +16,18 @@ export const Register = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (showError) {
-      setTimeout(() => {
-        setShowError(false);
-      }, 3000);
-      return;
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    createUserWithEmailAndPassword(email, password);
+  };
+
+  useEffect(() => {
     if (user) {
       toast('Registration successful');
       navigate('/');
     }
-  }, [showError, error, user]); // eslint-disable-line
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!email || !password || !name) {
-      setShowError(true);
-      setErrorMessage('Please provide all values');
-      return;
-    }
-
-    createUserWithEmailAndPassword(email, password);
-  };
+  }, [user]); // eslint-disable-line
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -53,7 +38,6 @@ export const Register = () => {
             {splitErrorText(error.message)}
           </p>
         )}
-        {showError && <p className="text-red-400">{errorMessage}</p>}
 
         <div className="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100">
           <div className="card-body">
@@ -68,6 +52,7 @@ export const Register = () => {
                   className="input input-bordered"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  required
                 />
               </div>
               <div className="form-control">
@@ -80,6 +65,7 @@ export const Register = () => {
                   className="input input-bordered"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
               <div className="form-control">
@@ -92,6 +78,7 @@ export const Register = () => {
                   className="input input-bordered"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
                 <label className="label">
                   <Link to="/login" className="label-text-alt link link-hover">
