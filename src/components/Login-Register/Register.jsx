@@ -1,9 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { auth } from '../../config/firebase.config';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGithub } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import { splitErrorText } from '../../utils/splitErrorText';
+import { BsGithub } from 'react-icons/bs';
+import { Loading } from '../Loading';
 
 export const Register = () => {
   const [name, setName] = useState('');
@@ -14,7 +16,13 @@ export const Register = () => {
     { sendEmailVerification: true }
   );
 
+  const [signInWithGithub, githubSignupUser, githubSignupLoading, githubSignupError] =
+    useSignInWithGithub(auth);
+
   const navigate = useNavigate();
+  const location = useLocation();
+
+  let from = location.state?.from?.pathname || '/';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,11 +31,15 @@ export const Register = () => {
   };
 
   useEffect(() => {
-    if (user) {
+    if (user || githubSignupUser) {
       toast('Registration successful');
-      navigate('/');
+      navigate(from);
     }
-  }, [user]); // eslint-disable-line
+  }, [user, githubSignupUser]); // eslint-disable-line
+
+  if (githubSignupLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -36,6 +48,12 @@ export const Register = () => {
         {error && (
           <p className="text-red-400" id="firebase-error">
             {splitErrorText(error.message)}
+          </p>
+        )}
+
+        {githubSignupError && (
+          <p className="text-red-400" id="firebase-error">
+            {splitErrorText(githubSignupError.message)}
           </p>
         )}
 
@@ -113,6 +131,16 @@ export const Register = () => {
                 )}
               </div>
             </form>
+            <div className="divider">OR</div>
+
+            <button
+              type="button"
+              className="flex justify-center mx-auto items-center w-full h-20 rounded px-10 bg-neutral cursor-pointer hover:bg-neutral-focus transition duration-150 ease-out hover:ease-in"
+              onClick={() => signInWithGithub()}
+            >
+              <BsGithub className="w-5 h-5 mr-3" />
+              <span className="lg:uppercase">Register with Github</span>
+            </button>
           </div>
         </div>
       </div>

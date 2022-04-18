@@ -1,8 +1,10 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGithub } from 'react-firebase-hooks/auth';
 import { auth } from '../../config/firebase.config';
 import { splitErrorText } from '../../utils/splitErrorText';
+import { BsGithub } from 'react-icons/bs';
+import { Loading } from '../Loading';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,14 +17,21 @@ export const Login = () => {
 
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
 
+  const [signInWithGithub, githubSignInUser, githubSignInLoading, githubSignInError] =
+    useSignInWithGithub(auth);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     signInWithEmailAndPassword(email, password);
   };
 
-  if (user) {
+  if (user || githubSignInUser) {
     navigate(from, { replace: true });
+  }
+
+  if (githubSignInLoading) {
+    return <Loading />;
   }
 
   return (
@@ -31,6 +40,10 @@ export const Login = () => {
         <h1 className="text-3xl lg:text-5xl font-bold">Login now!</h1>
 
         {error && <p className="text-red-500">{splitErrorText(error.message)}</p>}
+        {githubSignInError && (
+          <p className="text-red-500">{splitErrorText(githubSignInError.message)}</p>
+        )}
+
         <div className="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100">
           <div className="card-body">
             <form onSubmit={handleSubmit}>
@@ -93,6 +106,16 @@ export const Login = () => {
                 )}
               </div>
             </form>
+            <div className="divider">OR</div>
+
+            <button
+              type="button"
+              className="flex justify-center mx-auto items-center w-full h-20 rounded px-10 bg-neutral cursor-pointer hover:bg-neutral-focus transition duration-150 ease-out hover:ease-in"
+              onClick={() => signInWithGithub()}
+            >
+              <BsGithub className="w-5 h-5 mr-3" />
+              <span className="lg:uppercase">login with Github</span>
+            </button>
           </div>
         </div>
       </div>
