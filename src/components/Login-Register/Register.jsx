@@ -1,10 +1,15 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { auth } from '../../config/firebase.config';
-import { useCreateUserWithEmailAndPassword, useSignInWithGithub } from 'react-firebase-hooks/auth';
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGithub,
+  useSignInWithGoogle,
+} from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import { splitErrorText } from '../../utils/splitErrorText';
 import { BsGithub } from 'react-icons/bs';
+import { FcGoogle } from 'react-icons/fc';
 import { Loading } from '../Loading';
 
 export const Register = () => {
@@ -16,8 +21,11 @@ export const Register = () => {
     { sendEmailVerification: true }
   );
 
-  const [signInWithGithub, githubSignupUser, githubSignupLoading, githubSignupError] =
+  const [signInWithGithub, githubSignUpUser, githubSignUpLoading, githubSignUpError] =
     useSignInWithGithub(auth);
+
+  const [signInWithGoogle, googleSignUpUser, googleSignUpLoading, googleSignUpError] =
+    useSignInWithGoogle(auth);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,29 +39,35 @@ export const Register = () => {
   };
 
   useEffect(() => {
-    if (user || githubSignupUser) {
+    if (user || githubSignUpUser || googleSignUpUser) {
       toast('Registration successful');
       navigate(from, { replace: true });
     }
-  }, [user, githubSignupUser]); // eslint-disable-line
+  }, [user, githubSignUpUser, googleSignUpUser]); // eslint-disable-line
 
-  if (githubSignupLoading) {
+  if (githubSignUpLoading || googleSignUpLoading) {
     return <Loading />;
   }
 
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen bg-base-200 pt-20 lg:pt-0">
       <div className="hero-content flex-col w-full lg:w-8/12">
-        <h1 className="text-3xl lg:text-5xl font-bold">Register here!</h1>
+        <h1 className="text-3xl lg:text-4xl font-bold">Register here!</h1>
         {error && (
           <p className="text-red-400" id="firebase-error">
             {splitErrorText(error.message)}
           </p>
         )}
 
-        {githubSignupError && (
+        {githubSignUpError && (
           <p className="text-red-400" id="firebase-error">
-            {splitErrorText(githubSignupError.message)}
+            {splitErrorText(githubSignUpError.message)}
+          </p>
+        )}
+
+        {googleSignUpError && (
+          <p className="text-red-400" id="firebase-error">
+            {splitErrorText(googleSignUpError.message)}
           </p>
         )}
 
@@ -140,6 +154,15 @@ export const Register = () => {
             >
               <BsGithub className="w-5 h-5 mr-3" />
               <span className="lg:uppercase">Register with Github</span>
+            </button>
+
+            <button
+              type="button"
+              className="mt-3 flex justify-center mx-auto items-center w-full h-20 rounded px-10 bg-neutral cursor-pointer hover:bg-neutral-focus transition duration-150 ease-out hover:ease-in"
+              onClick={() => signInWithGoogle()}
+            >
+              <FcGoogle className="w-5 h-5 mr-3" />
+              <span className="lg:uppercase">Register with Google</span>
             </button>
           </div>
         </div>

@@ -26,10 +26,7 @@ export const Service = ({ service: { category, img, services, price, id: service
         </button>
 
         <div className="card-actions">
-          <Link
-            to={`/checkout/${serviceId}`}
-            className="btn btn-primary btn-wide tracking-wide mt-5"
-          >
+          <Link to={`/checkout/${serviceId}`} className="btn btn-wide tracking-wide mt-5">
             Book
           </Link>
         </div>

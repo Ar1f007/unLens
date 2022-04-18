@@ -1,4 +1,4 @@
-import { portrait, product, corporate, event, wedding } from '../';
+import { portrait, product, corporate, event, wedding, editorial } from '../';
 
 export const serviceList = [
   {
@@ -47,5 +47,12 @@ export const serviceList = [
     img: event,
     services: ['2 hours of coverage', '40+ digital images', '1-4 person', 'Up to 3 outfit change'],
     price: 350,
+  },
+  {
+    id: 6,
+    category: 'Editorial',
+    img: editorial,
+    services: ['1 hours of coverage', '30+ digital images', 'Cover Image', 'Pro photo editing'],
+    price: 150,
   },
 ];

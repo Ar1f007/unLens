@@ -1,9 +1,14 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGithub } from 'react-firebase-hooks/auth';
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGithub,
+  useSignInWithGoogle,
+} from 'react-firebase-hooks/auth';
 import { auth } from '../../config/firebase.config';
 import { splitErrorText } from '../../utils/splitErrorText';
 import { BsGithub } from 'react-icons/bs';
+import { FcGoogle } from 'react-icons/fc';
 import { Loading } from '../Loading';
 
 export const Login = () => {
@@ -19,6 +24,8 @@ export const Login = () => {
 
   const [signInWithGithub, githubSignInUser, githubSignInLoading, githubSignInError] =
     useSignInWithGithub(auth);
+  const [signInWithGoogle, googleSignInUser, googleSignInLoading, googleSignInError] =
+    useSignInWithGoogle(auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,22 +33,25 @@ export const Login = () => {
     signInWithEmailAndPassword(email, password);
   };
 
-  if (user || githubSignInUser) {
+  if (user || githubSignInUser || googleSignInUser) {
     navigate(from, { replace: true });
   }
 
-  if (githubSignInLoading) {
+  if (githubSignInLoading || googleSignInLoading) {
     return <Loading />;
   }
 
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen bg-base-200 pt-20 lg:pt-0">
       <div className="hero-content flex-col w-full lg:w-8/12">
-        <h1 className="text-3xl lg:text-5xl font-bold">Login now!</h1>
+        <h1 className="text-3xl lg:text-4xl font-bold">Login now!</h1>
 
         {error && <p className="text-red-500">{splitErrorText(error.message)}</p>}
         {githubSignInError && (
           <p className="text-red-500">{splitErrorText(githubSignInError.message)}</p>
+        )}
+        {googleSignInError && (
+          <p className="text-red-500">{splitErrorText(googleSignInError.message)}</p>
         )}
 
         <div className="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100">
@@ -115,6 +125,15 @@ export const Login = () => {
             >
               <BsGithub className="w-5 h-5 mr-3" />
               <span className="lg:uppercase">login with Github</span>
+            </button>
+
+            <button
+              type="button"
+              className="mt-3 flex justify-center mx-auto items-center w-full h-20 rounded px-10 bg-neutral cursor-pointer hover:bg-neutral-focus transition duration-150 ease-out hover:ease-in"
+              onClick={() => signInWithGoogle()}
+            >
+              <FcGoogle className="w-5 h-5 mr-3" />
+              <span className="lg:uppercase">login with Google</span>
             </button>
           </div>
         </div>

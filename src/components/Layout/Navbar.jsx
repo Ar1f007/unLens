@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useId } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../config/firebase.config';
@@ -13,6 +13,12 @@ const navigation = [
 export const Navbar = () => {
   const id = useId();
   const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    signOut(auth);
+    navigate('/');
+  };
 
   return (
     <nav className="container mx-auto navbar bg-base-100 fixed top-0 left-0 right-0 z-10">
@@ -79,7 +85,7 @@ export const Navbar = () => {
             </svg>
           </button>
         ) : user ? (
-          <button className="btn" onClick={() => signOut(auth)}>
+          <button className="btn" onClick={handleLogout}>
             Logout
           </button>
         ) : (

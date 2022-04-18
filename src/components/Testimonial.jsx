@@ -19,7 +19,7 @@ export class Testimonial extends Component {
 
     return (
       <div className="flex flex-col items-center py-20 px-8">
-        <h2 className="text-info text-3xl lg:text-5xl mt-3 mb-14 text-center">
+        <h2 className="text-3xl lg:text-5xl mt-3 mb-14 text-center">
           What My Clients Say About Me?
         </h2>
         <div className="w-full lg:w-4/12 ">

@@ -1,12 +1,12 @@
 export const Blog = () => {
   return (
-    <section className="p-4 lg:p-16 max-w-7xl mx-auto bg-neutral-content mt-24 rounded">
+    <section className="p-4 lg:p-16 max-w-7xl mx-auto bg-neutral mt-24 rounded">
       <div
         tabIndex="0"
-        className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box"
+        className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box text-gray-400"
       >
         <div className="collapse-title lg:text-xl font-medium">
-          What is the Difference between authentication authorization?
+          What is the Difference between authentication and authorization?
           <div className="divider"></div>
         </div>
 
@@ -27,14 +27,14 @@ export const Blog = () => {
       </div>
       <div
         tabIndex="0"
-        className="mt-10 collapse collapse-arrow border border-base-300 bg-base-100 rounded-box"
+        className="mt-10 collapse collapse-arrow border border-base-300 bg-base-100 rounded-box text-gray-400"
       >
         <div className="collapse-title lg:text-xl font-medium">
           Why are you using firebase? What other options do you have to implement authentication?
           <div className="divider"></div>
         </div>
 
-        <div className="collapse-content">
+        <div className="collapse-content ">
           <p>
             <em>Reason behind I'm using firebase is</em> that it takes almost zero effort to get
             authentication done. It supports authentication using passwords, phone numbers, popular
@@ -50,7 +50,7 @@ export const Blog = () => {
       </div>
       <div
         tabIndex="0"
-        className="mt-10 collapse collapse-arrow border border-base-300 bg-base-100 rounded-box"
+        className="mt-10 collapse collapse-arrow border border-base-300 bg-base-100 rounded-box text-gray-400"
       >
         <div className="collapse-title lg:text-xl font-medium">
           What other services does firebase provide other than authentication?

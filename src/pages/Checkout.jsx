@@ -1,16 +1,21 @@
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { auth } from '../config/firebase.config';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { Loading } from '../components/Loading';
+import { serviceList } from '../assets/data/services';
 
 export const Checkout = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+  useEffect(() => {
+    const { category } = serviceList.find((service) => service.id === +id);
+    setSelectedCategory(category);
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,10 +28,11 @@ export const Checkout = () => {
     <section className="py-5">
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col w-full lg:w-8/12">
-          <h1 className="text-3xl lg:text-5xl font-bold">Book Here!</h1>
+          <h1 className="text-3xl lg:text-4xl font-bold">Book Here!</h1>
 
           <div className="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100">
             <div className="card-body">
+              <p className="text-2xl">Package : {selectedCategory}</p>
               <form onSubmit={handleSubmit}>
                 <div className="form-control">
                   <label className="label">
@@ -37,6 +43,7 @@ export const Checkout = () => {
                     placeholder="name"
                     className="input input-bordered"
                     required
+                    value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
@@ -49,6 +56,7 @@ export const Checkout = () => {
                     placeholder="email"
                     className="input input-bordered"
                     required
+                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
@@ -61,6 +69,7 @@ export const Checkout = () => {
                     className="textarea textarea-bordered"
                     placeholder="Address"
                     required
+                    value={address}
                     onChange={(e) => setAddress(e.target.value)}
                   ></textarea>
                 </div>

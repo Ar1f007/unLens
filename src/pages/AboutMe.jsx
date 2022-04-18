@@ -2,14 +2,14 @@ import profile from '../assets/images/profile.jpg';
 
 export const AboutMe = () => {
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen bg-base-300 pt-20 lg:pt-0">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img src={profile} className="max-w-sm w-full rounded-lg shadow-2xl" alt="profile" />
         <div>
           <h1 className="text-2xl lg:text-3xl font-bold">Hi there!</h1>
           <p className="py-3">
             My name is Arif. I am doing my Bachelors in technology from Sylhet Metropolitan
-            university and my specialisation is in Computer Science and Engineering.
+            university and my specialization is in Computer Science and Engineering.
           </p>
           <p className="py-3">
             I have a deep interest in Development and I have made number of projects using HTML,
